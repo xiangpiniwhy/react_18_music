@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import discoverReducer from '@/store/discover/index'
+import recommendReducer from '@/views/discover/c_cpns_recommend/store'
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux'
 
 const store = configureStore({
   reducer: {
-    discover: discoverReducer
+    discover: discoverReducer,
+    recommend: recommendReducer
   }
 })
 

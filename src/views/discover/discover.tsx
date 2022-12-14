@@ -1,22 +1,21 @@
-import React, { FC, memo, ReactNode, Suspense } from 'react'
-import { useAppSelect } from '@/store'
+import React, { FC, memo, ReactNode, Suspense, useEffect } from 'react'
+import { useAppDispatch, useAppSelect } from '@/store'
 import { shallowEqual } from 'react-redux'
 
 import { NavLink, Outlet } from 'react-router-dom'
 import { secondaryTitle } from '@/assets/json'
 import { DiscoverWrapper } from '@/views/discover/style'
+import { fetchRecommendAction } from '@/views/discover/c_cpns_recommend/store'
 
 interface IDiscover {
   children?: ReactNode
 }
 
 const Discover: FC<IDiscover> = () => {
-  const { count } = useAppSelect(
-    (state) => ({
-      count: state.discover.count
-    }),
-    shallowEqual
-  )
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchRecommendAction())
+  }, [])
 
   return (
     <div>
